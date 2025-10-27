@@ -34,6 +34,8 @@ void setup() {
   Serial.begin(9600);
   delay(500);
   Serial.println("Temperature reading started...\n");
+
+  setAnalogWriteFrequency(PIN_USER_LED1,50000);
 }
 
 void loop() {
@@ -42,6 +44,8 @@ void loop() {
   Serial.print("Temperature: ");
   Serial.print(temperature, 2);
   Serial.println(" °C");
+
+ analogWrite(PIN_USER_LED1, 0.5 * getAnalogWriteMaximum());
 
   delay(1000);
 }
