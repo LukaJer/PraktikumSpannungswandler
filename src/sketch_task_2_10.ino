@@ -7,11 +7,11 @@ void setup() {
 
 pinMode(USER_LED1, OUTPUT);
 digitalWrite(USER_LED1, LOW);
+setAnalogWriteFrequency(USER_LED1, PWM_frequency);
 }
 
 void loop() {
 
-  setAnalogWriteFrequency(USER_LED1, PWM_frequency);
   analogWrite(USER_LED1, 0.1*getAnalogWriteMaximum());
   delay(1000);
 
