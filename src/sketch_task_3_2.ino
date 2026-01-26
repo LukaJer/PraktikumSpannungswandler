@@ -28,7 +28,7 @@ float getVoltage(unsigned int pin)
   return analogRead(pin)*(v_ref/adc_max);
 }
 
-double dutycycle = 0.3*getAnalogWriteMaximum(); //Initial Duty Cycle of Arduino
+double dutycycle = 0.9*getAnalogWriteMaximum(); //Initial Duty Cycle
 
 
 void setup()
@@ -62,7 +62,7 @@ void setup()
   analogReadResolution(12);
 
   delay(100);
-  analogWrite(BUCK_PIN, 255 - dutycycle); //write dutycycle in Arduino --> Real one will be inverted
+  analogWrite(BUCK_PIN, 255 - (int)(dutycycle)); //write dutycycle in Arduino --> Real one will be inverted
 
 }
 
@@ -74,7 +74,7 @@ void loop()
     dutycycle = dutycycle - 0.1*getAnalogWriteMaximum();
     Serial.print("Dutycycle: ");
     Serial.println(dutycycle);
-    analogWrite(BUCK_PIN, 255 - dutycycle);
+    analogWrite(BUCK_PIN, 255 - (int)(dutycycle));
     //Blink LED 3
     digitalWrite(USER_LED3, HIGH);
     delay(100);
@@ -89,7 +89,7 @@ void loop()
     dutycycle = dutycycle + 0.1*getAnalogWriteMaximum();
     Serial.print("Dutycycle: ");
     Serial.println(dutycycle);
-    analogWrite(BUCK_PIN, 255 - dutycycle);
+    analogWrite(BUCK_PIN, 255 - (int)(dutycycle));
     //Blink LED 4
     digitalWrite(USER_LED4, HIGH);
     delay(100);
@@ -109,5 +109,4 @@ void loop()
   Serial.println("%)");
   //Short Delay such that serial monitor is not completely flooded
   delay(100);
-
 }
