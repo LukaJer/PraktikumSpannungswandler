@@ -43,7 +43,7 @@ void loop() {
   Serial.print(T);
   Serial.println(" °C");
 
-  setAnalogWriteFrequency(BUCK_CNTRL, PWM_frequency);
+  setAnalogWriteFrequency(BUCK_CNTRL, PWM_frequency); //PWM signal to gerate some output voltage
   analogWrite(BUCK_CNTRL, 0.6* getAnalogWriteMaximum());
 
   delay(1000);
